@@ -34,4 +34,3 @@ class NotifyService:
 
         notification.notified = True
         notification.save(update_fields=['notified'])
-
