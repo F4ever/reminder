@@ -21,7 +21,7 @@ class UserViewSet(viewsets.ModelViewSet):
 class NotificationViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated, ReadOrOwnerPermission]
 
-    queryset = Notification.objects.all().order_by('date')
+    queryset = Notification.objects.prefetch_related('participators').order_by('date').distinct()
     serializer_class = NotificationSerializer
 
     filterset_fields = ['notified']
@@ -30,5 +30,5 @@ class NotificationViewSet(viewsets.ModelViewSet):
         return self.queryset.filter(Q(creator=self.request.user) | Q(participators=self.request.user))
 
     def create(self, request, *args, **kwargs):
-        request.data['creator'] = self.request.user
+        request.data['creator'] = self.request.user.id
         return super().create(request, *args, **kwargs)

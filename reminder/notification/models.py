@@ -9,7 +9,7 @@ class Notification(models.Model):
     date = models.DateTimeField()
 
     creator = models.ForeignKey('core.User', on_delete=models.CASCADE)
-    participators = models.ManyToManyField('core.User', related_name='notifications')
+    participators = models.ManyToManyField('core.User', related_name='notifications', blank=True)
 
     notified = models.BooleanField(default=False)
 

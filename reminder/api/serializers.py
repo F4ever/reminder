@@ -15,14 +15,10 @@ class UserProfileSerializer(serializers.ModelSerializer):
 
 
 class NotificationSerializer(serializers.ModelSerializer):
-    creator = serializers.IntegerField(required=False)
-
-    def validate_creator(self, value):
-        return self.context
-
     class Meta:
         model = Notification
         fields = (
+            'id',
             'head',
             'body',
             'place',
