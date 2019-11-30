@@ -11,6 +11,8 @@ class Notification(models.Model):
     creator = models.ForeignKey('core.User', on_delete=models.CASCADE)
     participators = models.ManyToManyField('core.User', related_name='notifications')
 
+    notified = models.BooleanField(default=False)
+
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

@@ -27,13 +27,13 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 INTERNAL_IPS = [
     '127.0.0.1',
-    '0.0.0.0'
+    '0.0.0.0',
 ]
 
 # Application definition
 APPLICATION_APPS = [
     'notification',
-    'core'
+    'core',
 ]
 
 INSTALLED_APPS = [
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'django_filters',
 
     'debug_toolbar',
 ] + APPLICATION_APPS
@@ -126,4 +127,17 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# User model settings
+
 AUTH_USER_MODEL = 'core.User'
+
+# Rest framework settings
+
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': (
+        'django_filters.rest_framework.DjangoFilterBackend',
+    ),
+
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 100,
+}
