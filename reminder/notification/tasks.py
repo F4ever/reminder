@@ -1,7 +1,5 @@
 import datetime
 
-from django.conf import settings
-
 from notification.models import Notification
 from notification.services.notify_service import NotifyService
 from reminder.celery import app
@@ -21,14 +19,3 @@ def send_actual_notifications():
 
     notify_service = NotifyService(notification_query_set=actual_notifications)
     notify_service.send_notifications()
-
-
-@app.task
-def send_mail(self, head, body, to_emails):
-    send_mail(
-        head,
-        body,
-        settings.FROM_EMAIL,
-        to_emails,
-        fail_silently=False,
-    )

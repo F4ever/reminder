@@ -1,6 +1,7 @@
 import logging
 
-from notification.tasks import send_mail
+from core.tasks import send_mail_task
+
 
 logger = logging.getLogger(__name__)
 
@@ -22,7 +23,7 @@ class NotifyService:
 
         try:
             # send_mail is celery task, we do not want to wait until email will be send
-            send_mail(
+            send_mail_task.delay(
                 notification.head,
                 notification.body,
                 to_emails,

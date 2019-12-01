@@ -148,4 +148,11 @@ REST_FRAMEWORK = {
 
 # Email settings
 
-FROM_EMAIL = 'some@email.com'
+DEFAULT_FROM_EMAIL = 'notifymanager123@gmail.com'
+
+EMAIL_HOST_USER = 'notifymanager123@gmail.com'
+EMAIL_HOST_PASSWORD = 'notifypassword12'
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
