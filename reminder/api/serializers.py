@@ -1,3 +1,6 @@
+import datetime
+
+import pytz
 from rest_framework import serializers
 
 from core.models import User
@@ -28,3 +31,9 @@ class NotificationSerializer(serializers.ModelSerializer):
             'notified',
             'created_at',
         )
+
+    def validate_date(self, value):
+        if value < datetime.datetime.now(tz=pytz.UTC):
+            raise serializers.ValidationError('Date must be in future')
+
+        return value

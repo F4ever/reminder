@@ -30,5 +30,6 @@ class NotificationViewSet(viewsets.ModelViewSet):
         return self.queryset.filter(Q(creator=self.request.user) | Q(participators=self.request.user))
 
     def create(self, request, *args, **kwargs):
+        request.data._mutable = True
         request.data['creator'] = self.request.user.id
         return super().create(request, *args, **kwargs)

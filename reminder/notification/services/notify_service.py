@@ -1,9 +1,4 @@
-import logging
-
 from core.tasks import send_mail_task
-
-
-logger = logging.getLogger(__name__)
 
 
 class NotifyService:
@@ -15,23 +10,18 @@ class NotifyService:
         for notification in self._notifications.iterator():
             self._send_notification(notification)
 
+        self._notifications.update(notified=True)
+
     def _send_notification(self, notification):
         to_emails = [user.email for user in notification.participators.all()]
 
         creator_email = notification.creator.email
         to_emails.append(creator_email)
 
-        try:
-            # send_mail is celery task, we do not want to wait until email will be send
-            send_mail_task.delay(
-                notification.head,
-                notification.body,
-                to_emails,
-            )
-        except Exception as exp:
-            # Return without changing notification status and log the error
-            logger.error(f'Can not send notification with id: {notification.id} with exception: {exp}')
-            return
-
-        notification.notified = True
-        notification.save(update_fields=['notified'])
+        # send_mail is celery task, we do not want to wait until email will be send
+        send_mail_task.delay(
+            notification.head,
+            notification.body,
+            to_emails,
+            details=f'Send notfication with id: {notification.id}'
+        )

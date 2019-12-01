@@ -9,5 +9,5 @@ urlpatterns = [
 
     # Notifications
     url(r'^notifications/$', NotificationViewSet.as_view({'get': 'list', 'post': 'create'})),
-    url(r'^notifications/(?P<pk>[\d]+)/$', NotificationViewSet.as_view({'get': 'retrieve', 'put': 'update', 'delete': 'delete'})),
+    url(r'^notifications/(?P<pk>[\d]+)/$', NotificationViewSet.as_view({'get': 'retrieve', 'patch': 'partial_update', 'delete': 'destroy'})),
 ]
