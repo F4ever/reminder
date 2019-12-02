@@ -66,7 +66,9 @@ ROOT_URLCONF = 'reminder.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(os.path.dirname(__file__), '../templates')
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -156,3 +158,12 @@ EMAIL_HOST_PASSWORD = 'notifypassword12'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
+
+# Webpack settings
+
+import socket
+s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+
+LOCAL_IP_ADDRESS = s.getsockname()[0]
+
+WEBPACK_DEVELOPMENT_SERVER = 'http://' + LOCAL_IP_ADDRESS + ':3000/static/'
