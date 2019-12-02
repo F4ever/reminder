@@ -29,7 +29,10 @@ class UserRegisterSerializer(serializers.ModelSerializer):
         return norm_email
 
     def save(self):
-        user = User(email=self.validated_data['email'].lower())
+        user = User(
+            email=self.validated_data['email'].lower(),
+            username=self.validated_data['username']
+        )
         user.set_password(self.validated_data['password'])
         user.save()
         return user

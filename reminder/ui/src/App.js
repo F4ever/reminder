@@ -1,26 +1,27 @@
-import React from 'react';
+import React, {Component} from 'react';
 import './App.css';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Login from "./components/login";
 import Register from "./components/register";
+import NotificationTable from "./components/notification-table";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
-function App() {
-  return (
-      <div className="App">
-        <BrowserRouter>
-          <Switch>
-            <Route path='/login' component={Login}/>
-            <Route path='/register' component={Register}/>
-            {/**/}
-            {/*<Route exact path='/' component={NotificationTabel}/>*/}
-            {/*<Route path='/notification' component={Notification}/>*/}
-            {/*<Route path='/notification/:number' component={Notification}/>*/}
-          </Switch>
-        </BrowserRouter>
-      </div>
-  );
+class App extends Component {
+
+    render(){
+        return (
+            <div className="App">
+                <BrowserRouter>
+                    <Switch>
+                        <Route exact path='/' component={NotificationTable}/>
+                        <Route exact path='/login/' component={Login}/>
+                        <Route exact path='/register/' component={Register}/>
+                    </Switch>
+                </BrowserRouter>
+            </div>
+        );
+    }
 }
 
 export default App;

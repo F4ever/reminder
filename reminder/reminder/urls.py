@@ -8,7 +8,7 @@ from django.urls import path, include
 
 urlpatterns = [
     # Auth endpoints
-    path(r'auth-api/', include('auth.urls')),
+    path(r'api-auth/', include('auth.urls')),
 
     # Notification endpoints
     path(r'api/v1/', include('api.urls')),
@@ -16,9 +16,6 @@ urlpatterns = [
     # Django admin
     path(r'admin/', admin.site.urls),
 
-    # Django debugtoolbar
-    url(r'^__debug__/', include(debug_toolbar.urls)),
-
     # Frontend
-    url(r'^', lambda request: SimpleTemplateResponse(get_template('index.html'))),
+    url(r'^(?!api|admin).*$', lambda request: SimpleTemplateResponse(get_template('index.html'))),
 ]
