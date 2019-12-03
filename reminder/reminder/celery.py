@@ -1,8 +1,10 @@
+from __future__ import absolute_import, unicode_literals
 import os
-from celery import Celery
+from datetime import timedelta
 
-# set the default Django settings module for the 'celery' program.
+from celery import Celery
 from celery.schedules import crontab
+
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'reminder.settings')
 
@@ -23,3 +25,12 @@ app.conf.beat_schedule = {
         'schedule': crontab(),  # execute every minute
     },
 }
+
+app.conf.update(
+    CELERYBEAT_SCHEDULE={
+        'send_notifications': {
+            'task': 'notification.tasks.send_actual_notifications',
+            'schedule': timedelta(minutes=1),
+        }
+    }
+)

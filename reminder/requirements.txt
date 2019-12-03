@@ -4,3 +4,4 @@ djangorestframework==3.10.3
 django-filter==2.2.0
 mysqlclient==1.4.6
 Faker==2.0.4
+redis==3.3.11

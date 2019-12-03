@@ -85,11 +85,11 @@ WSGI_APPLICATION = 'reminder.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'remind',
-        'USER': 'remind',
-        'PASSWORD': 'admin',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
+        'NAME': os.getenv('DB_NAME'),
+        'HOST': os.getenv('DB_HOST'),
+        'PORT': os.getenv('DB_PORT'),
+        'USER': os.getenv('DB_USER'),
+        'PASSWORD': os.getenv('DB_PASSWORD'),
     }
 }
 
@@ -150,20 +150,22 @@ REST_FRAMEWORK = {
 
 # Email settings
 
-DEFAULT_FROM_EMAIL = 'notifymanager123@gmail.com'
+DEFAULT_FROM_EMAIL = os.getenv('EMAIL_HOST_USER')
 
-EMAIL_HOST_USER = 'notifymanager123@gmail.com'
-EMAIL_HOST_PASSWORD = 'notifypassword12'
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 
-# Webpack settings
+# Redis settings
 
-import socket
-s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+REDIS_URI = os.getenv('REDIS_URL')
 
-LOCAL_IP_ADDRESS = s.getsockname()[0]
-
-WEBPACK_DEVELOPMENT_SERVER = 'http://' + LOCAL_IP_ADDRESS + ':3000/static/'
+# Celery settings
+CELERY_BROKER_URL = REDIS_URI
+CELERY_RESULT_BACKEND = REDIS_URI
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TASK_SERIALIZER = 'json'

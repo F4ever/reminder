@@ -1,4 +1,3 @@
-import debug_toolbar
 from django.conf.urls import url
 from django.contrib import admin
 from django.template.loader import get_template
