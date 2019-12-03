@@ -23,5 +23,5 @@ class NotifyService:
             notification.head,
             notification.body,
             to_emails,
-            details=f'Send notfication with id: {notification.id}'
+            details=f'Send notification with id: {notification.id}',
         )

@@ -34,7 +34,10 @@ services:
   celery:
     build: .
     command: celery -A reminder worker -l info
+    env_file:
+      - prod.env
     environment:
+      - DB_HOST=db
       - REDIS_URL=redis://redis:6379
     volumes:
       - ./reminder:/reminder/
