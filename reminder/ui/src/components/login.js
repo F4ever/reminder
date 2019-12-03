@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {Button, Form} from "react-bootstrap";
 import {withRouter} from "react-router-dom";
+import {getCookie} from '../utils';
 
 
 class Login extends Component {
