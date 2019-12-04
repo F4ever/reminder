@@ -49,7 +49,7 @@
 Примечания:  
 Забыл настрить ожидание сервера пока загружается база, завтра доделаю если успею до ревью  
 
-Во время работы при bulk_create, mysql не может выдать id, для объектов.
+Во время работы при bulk_create, mysql не может выдать id, для объектов.  
 Тоесть я не могу ими воспользоваться для создания других сущностей и приходится каждую вручную сохранять каждую и это очень грустно.
 
 If the model’s primary key is an AutoField it does not retrieve and set the primary key attribute, as save() does, unless the database backend supports it (currently PostgreSQL).
