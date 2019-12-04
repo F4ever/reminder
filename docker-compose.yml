@@ -25,6 +25,7 @@ services:
       - REDIS_URL=redis://redis:6379
     ports:
       - 8000:8000
+    restart: unless-stopped
     volumes:
       - ./reminder:/reminder/
     depends_on:
@@ -39,6 +40,7 @@ services:
     environment:
       - DB_HOST=db
       - REDIS_URL=redis://redis:6379
+    restart: unless-stopped
     volumes:
       - ./reminder:/reminder/
     depends_on:
