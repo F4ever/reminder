@@ -1,6 +1,6 @@
 celery==4.3.0
 Django==2.2.7
-djangorestframework==3.10.3
+djangorestframework==3.11.2
 django-filter==2.2.0
 mysqlclient==1.4.6
 Faker==2.0.4
