@@ -1,5 +1,5 @@
 celery==4.3.0
-Django==2.2.7
+Django==2.2.21
 djangorestframework==3.10.3
 django-filter==2.2.0
 mysqlclient==1.4.6
